@@ -2,6 +2,13 @@ import psycopg2
 from sqlalchemy import create_engine
 import os
 
+#Used to setup the environment variables for the session
+def setup_env(usr, pw):
+    print("Setting up environment vars...")
+    os.environ['CLASS_DB_HOST'] = 'dbclass.cs.pdx.edu'
+    os.environ['CLASS_DB_USERNAME'] = usr
+    os.environ['CLASS_DB_PASSWORD'] = pw
+    print("Done.")
 
 def create_connection():
     connection = psycopg2.connect(
@@ -19,6 +26,10 @@ def example_query(db_conn):
     cur.execute("SELECT first, last FROM agent LIMIT 20;")
     print(cur.fetchall())
 
+def my_query(db_conn):
+    cur = db_conn.cursor()
+    cur.execute("SELECT * FROM agent LIMIT 10;")
+    print(cur.fetchall())
 
 def create_class_roster_table(db_conn):
     cur = db_conn.cursor()
@@ -47,13 +58,16 @@ def query_class_roster(db_conn):
 
 
 if __name__ == "__main__":
-    conn = create_connection()
 
-    #
+    # Uncomment this line to setup your environment variables
+    setup_env(input("Enter User: "),input("Enter PW: "))
+
+    conn = create_connection() 
+    my_query(conn)
+
     # Lab Step 3
     #
     # example_query(conn)
-
     #
     # Lab Step 5
     #
