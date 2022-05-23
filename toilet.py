@@ -2,13 +2,28 @@ import pandas as pd
 from db import insert_df_rows_to_table
 import re
 
+# Australia, Land of Toilets - ETL Application
+# by Stuart Rimel, Pete Wells
+#
+# This will be the main file we run for our ETL. First, the program will
+# read from the .csv and store into panda dataframe. From there we can
+# wrangle the data into separate dataframes based off our schemas. This
+# file will then need to import some yet-to-be-made function from db.py
+# that creates all the tables in SQL that we will be inserting into. After
+# table creation happens, we will invoke the "insert_df_rows_to_table"
+# function from db.py which should insert our data into the table in bulk.
+# Or so we hope...
+
+
+data_file = 'test_data.csv'
+
 
 def wrangle(df):
-    df['first_name'] = df['full_name'].apply(get_first_name)
-    df['first_name'] = df['first_name'].apply(get_preferred_first_name)
-    df['last_name'] = df['full_name'].apply(get_last_name)
-    df['odin_login'] = df['email'].apply(get_odin_login)
-    return df[['first_name', 'last_name', 'odin_login', 'sub_section']]
+    #df['first_name'] = df['full_name'].apply(get_first_name)
+    #df['first_name'] = df['first_name'].apply(get_preferred_first_name)
+    #df['last_name'] = df['full_name'].apply(get_last_name)
+    #df['odin_login'] = df['email'].apply(get_odin_login)
+    return df[['FacilityID', 'Town']]
 
 
 def get_first_name(full_name):
@@ -40,10 +55,15 @@ def get_odin_login(email):
 if __name__ == "__main__":
 
     # Reading from test toilet data (9 rows)
-    df = pd.read_csv("test_data.csv", header=0)
+    df = pd.read_csv(data_file, header=0)
     print("\nReading CSV into panda's dataframe...")
     print("\nDisplaying loaded dataframe:")
     print(df)
+    new_df = wrangle(df)
+    print("\nTest wrangle of toilet data...")
+    print("\nExample of town relation:")
+    print(new_df)
+    
 
 
 #########################################################################
