@@ -38,9 +38,17 @@ def get_odin_login(email):
 
 
 if __name__ == "__main__":
-    df = pd.read_csv("class_roster.csv", header=0)
 
-    #
+    # Reading from test toilet data (9 rows)
+    df = pd.read_csv("test_data.csv", header=0)
+    print("\nReading CSV into panda's dataframe...")
+    print("\nDisplaying loaded dataframe:")
+    print(df)
+
+
+#########################################################################
+
+
     # Lab Step 4a
     # df.iloc[0] finds a DF location by index, column number default
     # df.loc[...] find's
@@ -48,15 +56,12 @@ if __name__ == "__main__":
     # print(df.iloc[0])
     # print(df.loc[(df['favorite_color'] == 'blue') & (df['sub_section'] == 486)])
 
-    #
     # Lab Step 4b
     #
-    print(df.dtypes)
+    # print(df.dtypes)
 
-    #
     # Lab Step 6
     #
     # df = wrangle(df)
     # insert_df_rows_to_table(df, 'class_roster')
     # print(df)
-
