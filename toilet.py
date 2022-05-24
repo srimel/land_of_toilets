@@ -59,6 +59,8 @@ def wrangle_dump_points(df):
     return df[attributes]
 
 
+# Makes a unique int for each facility type (not UUID)
+#
 def wrangle_facility_types(df):
     facilities = []
     ids = []
@@ -67,17 +69,32 @@ def wrangle_facility_types(df):
         if item not in facilities:
             facilities.append(item)
             ids.append(i)
-            i = i + 1
-    new_table = {'TypeId':ids, 'Name':facilities}
-    new_df = pd.DataFrame(new_table, columns = ['TypeId', 'Name'])
+            i += 1
+    new_table = {'TypeID' : ids, 'Name' : facilities}
+    new_df = pd.DataFrame(new_table, columns = ['TypeID', 'Name'])
     return new_df
 
 
+# This function is dependent on wrangle_facility_types() creating a 
+# facility_types dataframe to be passed in as second argument. 
+#
+def wrangle_facility_rel(df, facility_type_df):
+    type_ids = []
+    for row in df['FacilityType']:
+        j = 0 
+        for row2 in facility_type_df['Name']:
+            if row == row2:
+                type_ids.append(facility_type_df['TypeID'].iloc[j])
+                print("Row Match: " + row + " + " + row2)
+                break;
+            j += 1
+    df['TypeID'] = type_ids
+    return df[['FacilityID', 'TypeID']]
+        
+
 if __name__ == "__main__":
 
-    # Reading from test toilet data (9 rows)
     print("\nReading CSV into panda's dataframe...")
-
     df = pd.read_csv(data_file, header=0)
 
     print("\nDisplaying original loaded dataframe:")
@@ -91,6 +108,9 @@ if __name__ == "__main__":
     disposal = wrangle_disposal(df)
     dump_points = wrangle_dump_points(df)
     facility_types = wrangle_facility_types(df)
+    facility_rel = wrangle_facility_rel(df, facility_types)
+
+
 
     print("\nThe following dataframes were created:")
     print("Toilet Relation")
@@ -107,6 +127,9 @@ if __name__ == "__main__":
     print(dump_points)
     print("\nFacility Types Relation")
     print(facility_types)
+
+    print("\nFacility Relation")
+    print(facility_rel)
     
     
 
