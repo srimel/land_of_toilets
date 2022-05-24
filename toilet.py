@@ -15,8 +15,10 @@ import re
 # Or so we hope...
 
 
-data_file = 'test_data.csv'
+data_file = 'test_data.csv' #'toilet_data.csv'
 
+
+# Wranglin' Section
 
 def wrangle_toilets(df):
     attributes = ['FacilityID', 'Name', 'Male', 'Female', 'Unisex', 
@@ -44,15 +46,32 @@ def wrangle_access(df):
                   'ParkingAccessible', 'ParkingNote']
     return df[attributes]
 
+
 def wrangle_disposal(df):
     attributes = ['FacilityID', 'SharpsDisposal', 'SanitaryDisposal', 
                   'MensPadDisposal']
     return df[attributes]
 
+
 def wrangle_dump_points(df):
     attributes = ['FacilityID', 'DPWashout', 'DPAfterHours', 
                   'DumpPointNote']
     return df[attributes]
+
+
+def wrangle_facility_types(df):
+    facilities = []
+    ids = []
+    i = 1
+    for item in df['FacilityType']:
+        if item not in facilities:
+            facilities.append(item)
+            ids.append(i)
+            i = i + 1
+    new_table = {'TypeId':ids, 'Name':facilities}
+    new_df = pd.DataFrame(new_table, columns = ['TypeId', 'Name'])
+    return new_df
+
 
 if __name__ == "__main__":
 
@@ -71,20 +90,23 @@ if __name__ == "__main__":
     access = wrangle_access(df)
     disposal = wrangle_disposal(df)
     dump_points = wrangle_dump_points(df)
+    facility_types = wrangle_facility_types(df)
 
     print("\nThe following dataframes were created:")
     print("Toilet Relation")
     print(toilets)
-    print("Handicap Relation")
+    print("\nHandicap Relation")
     print(handicap)
-    print("Changing Relation")
+    print("\nChanging Relation")
     print(changing)
-    print("Access Relation")
+    print("\nAccess Relation")
     print(access)
-    print("Disposal Relation")
+    print("\nDisposal Relation")
     print(disposal)
-    print("Dump Point Relation")
+    print("\nDump Point Relation")
     print(dump_points)
+    print("\nFacility Types Relation")
+    print(facility_types)
     
     
 
