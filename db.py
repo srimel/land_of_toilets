@@ -3,6 +3,22 @@ from sqlalchemy import create_engine
 import os
 
 
+def welcome():
+    print("\nLand Of Toilets - ETL\n")
+
+
+#Used to setup the environment variables for the session
+def setup_env():
+    print("\nDo you need to setup environment variables?")
+    if(input("[y/n] ") == 'y'):
+        print("\nSetting up environment vars...")
+        print("\nEnter Database Creditentials:")
+        os.environ['CLASS_DB_HOST'] = 'dbclass.cs.pdx.edu'
+        os.environ['CLASS_DB_USERNAME'] = input("User: ")
+        os.environ['CLASS_DB_PASSWORD'] = input("PW: ")
+        print("Done.\n")
+
+
 def create_connection():
     connection = psycopg2.connect(
         host=os.environ['CLASS_DB_HOST'],
@@ -47,13 +63,22 @@ def query_class_roster(db_conn):
 
 
 if __name__ == "__main__":
-    conn = create_connection()
 
-    #
+    welcome()
+    setup_env()
+
+    conn = create_connection() 
+
+    print("Test query:")
+    example_query(conn)
+
+
+##########################################################################
+
+
     # Lab Step 3
     #
     # example_query(conn)
-
     #
     # Lab Step 5
     #
