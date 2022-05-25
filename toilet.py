@@ -140,7 +140,18 @@ def wrangle_location_rel(df, loc_df):
     return df[['FacilityID', 'LocID']]
 
 
-
+def wrangle_states(df):
+    states = []
+    state_ids = []
+    new_id = 1
+    for row in df['State']:
+        if row not in states:
+            states.append(row)
+            state_ids.append(new_id)
+            new_id += 1
+    new_table = {'StateID' : state_ids, 'State' : states}
+    new_df = pd.DataFrame(new_table, columns = ['StateID', 'State'])
+    return new_df
 
         
 if __name__ == "__main__":
@@ -168,29 +179,32 @@ if __name__ == "__main__":
     locations = wrangle_locations(df)
     location_rel = wrangle_location_rel(df, locations)
 
+    states = wrangle_states(df)
+
 
     print("\nThe following dataframes were created:")
-    print("Toilet Relation")
+    print("Toilets")
     print(toilets)
-    print("\nHandicap Relation")
+    print("\nHandicap")
     print(handicap)
-    print("\nChanging Relation")
+    print("\nChanging")
     print(changing)
-    print("\nAccess Relation")
+    print("\nAccess")
     print(access)
-    print("\nDisposal Relation")
+    print("\nDisposal")
     print(disposal)
-    print("\nDump Point Relation")
+    print("\nDump Point")
     print(dump_points)
-    print("\nFacility Types Relation")
+    print("\nFacility Types")
     print(facility_types)
-    print("\nFacility-Rel Relation")
+    print("\nFacility-Rel")
     print(facility_rel)
-    print("\nLocations Relation")
+    print("\nLocations")
     print(locations)
-
-    print("\nLocation-Rel Relation")
+    print("\nLocation-Rel")
     print(location_rel)
+    print("\nStates")
+    print(states)
     
     
 #########################################################################
