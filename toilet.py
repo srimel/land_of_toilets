@@ -159,7 +159,7 @@ def wrangle_state_rel(df, states):
     tuples = []
     i = 0
     for row in df['LocID']:
-        tup = (df['LocID'].iloc[i],df['State'].iloc[i])
+        tup = (df['LocID'].iloc[i], df['State'].iloc[i])
         if tup not in tuples:
             tuples.append(tup)
             loc_ids.append(df['LocID'].iloc[i])
@@ -180,12 +180,52 @@ def get_state_id(states, key):
     return 0
 
 
+def wrangle_towns(df):
+    towns = []
+    town_ids = []
+    new_id = 1
+    for row in df['Town']:
+        if row not in towns:
+            towns.append(row)
+            town_ids.append(new_id)
+            new_id += 1
+    new_table = {'TownID' : town_ids, 'Town' : towns}
+    new_df = pd.DataFrame(new_table, columns = ['TownID', 'Town'])
+    return new_df
+
+
+def wrangle_town_rel(df, towns):
+    loc_ids = []
+    town_ids = []
+    tuples = []
+    i = 0
+    for row in df['LocID']:
+        tup = (df['LocID'].iloc[i], df['Town'].iloc[i])
+        if tup not in tuples:
+            tuples.append(tup)
+            loc_ids.append(df['LocID'].iloc[i])
+            t_id = get_town_id(towns, df['Town'].iloc[i])
+            town_ids.append(t_id)
+        i += 1
+    new_table = {'LocID' : loc_ids, 'TownID' : town_ids}
+    new_df = pd.DataFrame(new_table, columns = ['LocID', 'TownID'])
+    return new_df
+
+
+def get_town_id(towns, key):
+    i = 0
+    for row in towns['Town']:
+        if row == key:
+            return towns['TownID'].iloc[i]
+        i += 1
+    return 0
 
 
 if __name__ == "__main__":
 
 
     print("\nReading CSV into panda's dataframe...")
+
     df = pd.read_csv(data_file, header=0)
 
 
@@ -194,6 +234,7 @@ if __name__ == "__main__":
 
 
     print("\nWrangling data...")
+
     toilets = wrangle_toilets(df)
     handicap = wrangle_handicap(df)
     changing = wrangle_changing(df)
@@ -209,6 +250,9 @@ if __name__ == "__main__":
 
     states = wrangle_states(df)
     state_rel = wrangle_state_rel(df,states)
+
+    towns = wrangle_towns(df)
+    town_rel = wrangle_town_rel(df,towns)
 
 
     print("\nThe following dataframes were created:")
@@ -234,10 +278,12 @@ if __name__ == "__main__":
     print(location_rel)
     print("\nStates")
     print(states)
-    
     print("\nState-Rel")
     print(state_rel)
-    
+    print("\nTowns")
+    print(towns)
+    print("\nTown-Rel")
+    print(town_rel)
 
 #########################################################################
 
