@@ -15,7 +15,7 @@ import re
 # Or so we hope...
 
 
-data_file = 'test_data.csv' #'toilet_data.csv'
+data_file = 'toilet_data.csv'
 
 
 # Wranglin' Section
@@ -120,11 +120,18 @@ def wrangle_locations(df):
                                                 'AddressNotes'])
     return new_df
 
-
+# This function is a performance bottleneck. With our current input size being
+# 22,031 rows, this algorithm will take approximately 45 minutes to complete. 
+# DMV version. 
 def wrangle_location_rel(df, loc_df):
     i = 0
+    ld_buff_size = 367
     count = 0
     loc_ids = []
+    print("\nOh crap, a bottleneck!")
+    print("\nAttempting to wrangle location_rel.")
+    print("(~45min runtime on linux servers)")
+    print("Wrangling.", end="", flush=True)
     for row in df['FacilityID']:
         j = 0
         for row2 in loc_df['LocID']: 
@@ -133,7 +140,10 @@ def wrangle_location_rel(df, loc_df):
                 count += 1
                 break;
             j += 1
+        if i % 367 == 0:
+            print(".", end="", flush=True)
         i += 1
+    print("")
     df['LocID'] = loc_ids
     # Can use count to error check if we have time
     return df[['FacilityID', 'LocID']]
@@ -236,25 +246,40 @@ if __name__ == "__main__":
     print("\nWrangling data...")
 
     toilets = wrangle_toilets(df)
+    print("Got the toilets!")
     handicap = wrangle_handicap(df)
+    print("Got the handicap!")
     changing = wrangle_changing(df)
+    print("Got the changing!")
     access = wrangle_access(df)
+    print("Got the access!")
     disposal = wrangle_disposal(df)
+    print("Got the disposal!")
     dump_points = wrangle_dump_points(df)
+    print("Got the dump_points!")
 
     facility_types = wrangle_facility_types(df)
+    print("Got the facillity_types!")
     facility_rel = wrangle_facility_rel(df, facility_types)
+    print("Got the facillity_rel!")
 
     locations = wrangle_locations(df)
+    print("Got the locations!")
     location_rel = wrangle_location_rel(df, locations)
+    print("Got the location_rel!")
 
     states = wrangle_states(df)
+    print("Got the states!")
     state_rel = wrangle_state_rel(df,states)
+    print("Got the state_rel!")
 
     towns = wrangle_towns(df)
+    print("Got the towns!")
     town_rel = wrangle_town_rel(df,towns)
+    print("Got the town_rel!")
 
 
+    '''
     print("\nThe following dataframes were created:")
     print("Toilets")
     print(toilets)
@@ -284,6 +309,7 @@ if __name__ == "__main__":
     print(towns)
     print("\nTown-Rel")
     print(town_rel)
+    '''
 
 #########################################################################
 
