@@ -85,49 +85,147 @@ def wrangle_facility_rel(df, facility_type_df):
         for row2 in facility_type_df['Name']:
             if row == row2:
                 type_ids.append(facility_type_df['TypeID'].iloc[j])
-                print("Row Match: " + row + " + " + row2)
                 break;
             j += 1
     df['TypeID'] = type_ids
     return df[['FacilityID', 'TypeID']]
 
 
+#Assumption is every location id has a unique lat/longitude?
 def wrangle_locations(df):
-
     loc_ids = []
     loc_tuples = []
     lat = []
     lon = []
     addr = []
     addr_notes = []
-
-    i = 0
+    index = 0
+    new_id = 1
     for row in df['Address1']:
         # Tuple to determine uniqueness of a location
-        loc = (df['Latitude'].iloc[i], df['Longitude'].iloc[i])
-
+        loc = (df['Latitude'].iloc[index], df['Longitude'].iloc[index])
         if loc not in loc_tuples:
             loc_tuples.append(loc)
-            loc_ids.append(i)
-            addr.append(df['Address1'].iloc[i])
-            lat.append(df['Latitude'].iloc[i])
-            lon.append(df['Longitude'].iloc[i])
-            addr_notes.append(df['AddressNote'].iloc[i])
-            i += 1
-
+            loc_ids.append(new_id)
+            addr.append(df['Address1'].iloc[index])
+            lat.append(df['Latitude'].iloc[index])
+            lon.append(df['Longitude'].iloc[index])
+            addr_notes.append(df['AddressNote'].iloc[index])
+            new_id += 1
+        index += 1
     new_table = {'LocID': loc_ids, 'Address1' : addr, 'Latitude' : lat,
                  'Longitude' : lon, 'AddressNotes' : addr_notes}
-
     new_df = pd.DataFrame(new_table, columns = ['LocID', 'Address1',
                                                 'Latitude', 'Longitude',
                                                 'AddressNotes'])
     return new_df
 
-        
+
+def wrangle_location_rel(df, loc_df):
+    i = 0
+    count = 0
+    loc_ids = []
+    for row in df['FacilityID']:
+        j = 0
+        for row2 in loc_df['LocID']: 
+            if (df['Latitude'].iloc[i] == loc_df['Latitude'].iloc[j]) and (df['Longitude'].iloc[i] == loc_df['Longitude'].iloc[j]):
+                loc_ids.append(loc_df['LocID'].iloc[j])
+                count += 1
+                break;
+            j += 1
+        i += 1
+    df['LocID'] = loc_ids
+    # Can use count to error check if we have time
+    return df[['FacilityID', 'LocID']]
+
+
+def wrangle_states(df):
+    states = []
+    state_ids = []
+    new_id = 1
+    for row in df['State']:
+        if row not in states:
+            states.append(row)
+            state_ids.append(new_id)
+            new_id += 1
+    new_table = {'StateID' : state_ids, 'State' : states}
+    new_df = pd.DataFrame(new_table, columns = ['StateID', 'State'])
+    return new_df
+
+
+def wrangle_state_rel(df, states):
+    loc_ids = []
+    state_ids = []
+    tuples = []
+    i = 0
+    for row in df['LocID']:
+        tup = (df['LocID'].iloc[i], df['State'].iloc[i])
+        if tup not in tuples:
+            tuples.append(tup)
+            loc_ids.append(df['LocID'].iloc[i])
+            st_id = get_state_id(states, df['State'].iloc[i])
+            state_ids.append(st_id)
+        i += 1
+    new_table = {'LocID' : loc_ids, 'StateID' : state_ids}
+    new_df = pd.DataFrame(new_table, columns = ['LocID', 'StateID'])
+    return new_df
+
+
+def get_state_id(states, key):
+    i = 0
+    for row in states['State']:
+        if row == key:
+            return states['StateID'].iloc[i]
+        i += 1
+    return 0
+
+
+def wrangle_towns(df):
+    towns = []
+    town_ids = []
+    new_id = 1
+    for row in df['Town']:
+        if row not in towns:
+            towns.append(row)
+            town_ids.append(new_id)
+            new_id += 1
+    new_table = {'TownID' : town_ids, 'Town' : towns}
+    new_df = pd.DataFrame(new_table, columns = ['TownID', 'Town'])
+    return new_df
+
+
+def wrangle_town_rel(df, towns):
+    loc_ids = []
+    town_ids = []
+    tuples = []
+    i = 0
+    for row in df['LocID']:
+        tup = (df['LocID'].iloc[i], df['Town'].iloc[i])
+        if tup not in tuples:
+            tuples.append(tup)
+            loc_ids.append(df['LocID'].iloc[i])
+            t_id = get_town_id(towns, df['Town'].iloc[i])
+            town_ids.append(t_id)
+        i += 1
+    new_table = {'LocID' : loc_ids, 'TownID' : town_ids}
+    new_df = pd.DataFrame(new_table, columns = ['LocID', 'TownID'])
+    return new_df
+
+
+def get_town_id(towns, key):
+    i = 0
+    for row in towns['Town']:
+        if row == key:
+            return towns['TownID'].iloc[i]
+        i += 1
+    return 0
+
+
 if __name__ == "__main__":
 
 
     print("\nReading CSV into panda's dataframe...")
+
     df = pd.read_csv(data_file, header=0)
 
 
@@ -136,38 +234,57 @@ if __name__ == "__main__":
 
 
     print("\nWrangling data...")
+
     toilets = wrangle_toilets(df)
     handicap = wrangle_handicap(df)
     changing = wrangle_changing(df)
     access = wrangle_access(df)
     disposal = wrangle_disposal(df)
     dump_points = wrangle_dump_points(df)
+
     facility_types = wrangle_facility_types(df)
     facility_rel = wrangle_facility_rel(df, facility_types)
+
     locations = wrangle_locations(df)
+    location_rel = wrangle_location_rel(df, locations)
+
+    states = wrangle_states(df)
+    state_rel = wrangle_state_rel(df,states)
+
+    towns = wrangle_towns(df)
+    town_rel = wrangle_town_rel(df,towns)
 
 
     print("\nThe following dataframes were created:")
-    print("Toilet Relation")
+    print("Toilets")
     print(toilets)
-    print("\nHandicap Relation")
+    print("\nHandicap")
     print(handicap)
-    print("\nChanging Relation")
+    print("\nChanging")
     print(changing)
-    print("\nAccess Relation")
+    print("\nAccess")
     print(access)
-    print("\nDisposal Relation")
+    print("\nDisposal")
     print(disposal)
-    print("\nDump Point Relation")
+    print("\nDump Point")
     print(dump_points)
-    print("\nFacility Types Relation")
+    print("\nFacility Types")
     print(facility_types)
-    print("\nFacility Relation")
+    print("\nFacility-Rel")
     print(facility_rel)
-    print("\nLocations Relation")
+    print("\nLocations")
     print(locations)
-    
-    
+    print("\nLocation-Rel")
+    print(location_rel)
+    print("\nStates")
+    print(states)
+    print("\nState-Rel")
+    print(state_rel)
+    print("\nTowns")
+    print(towns)
+    print("\nTown-Rel")
+    print(town_rel)
+
 #########################################################################
 
 
