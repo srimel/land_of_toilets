@@ -135,8 +135,7 @@ def wrangle_location_rel(df, loc_df):
             j += 1
         i += 1
     df['LocID'] = loc_ids
-    # Use count and i to throw exception if count != i at end of algo
-    print("count = " + str(count) + ", i = " + str(i))
+    # Can use count to error check if we have time
     return df[['FacilityID', 'LocID']]
 
 
@@ -153,7 +152,36 @@ def wrangle_states(df):
     new_df = pd.DataFrame(new_table, columns = ['StateID', 'State'])
     return new_df
 
-        
+
+def wrangle_state_rel(df, states):
+    loc_ids = []
+    state_ids = []
+    tuples = []
+    i = 0
+    for row in df['LocID']:
+        tup = (df['LocID'].iloc[i],df['State'].iloc[i])
+        if tup not in tuples:
+            tuples.append(tup)
+            loc_ids.append(df['LocID'].iloc[i])
+            st_id = get_state_id(states, df['State'].iloc[i])
+            state_ids.append(st_id)
+        i += 1
+    new_table = {'LocID' : loc_ids, 'StateID' : state_ids}
+    new_df = pd.DataFrame(new_table, columns = ['LocID', 'StateID'])
+    return new_df
+
+
+def get_state_id(states, key):
+    i = 0
+    for row in states['State']:
+        if row == key:
+            return states['StateID'].iloc[i]
+        i += 1
+    return 0
+
+
+
+
 if __name__ == "__main__":
 
 
@@ -180,6 +208,7 @@ if __name__ == "__main__":
     location_rel = wrangle_location_rel(df, locations)
 
     states = wrangle_states(df)
+    state_rel = wrangle_state_rel(df,states)
 
 
     print("\nThe following dataframes were created:")
@@ -206,7 +235,10 @@ if __name__ == "__main__":
     print("\nStates")
     print(states)
     
+    print("\nState-Rel")
+    print(state_rel)
     
+
 #########################################################################
 
 
