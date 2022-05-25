@@ -90,15 +90,50 @@ def wrangle_facility_rel(df, facility_type_df):
             j += 1
     df['TypeID'] = type_ids
     return df[['FacilityID', 'TypeID']]
-        
 
+
+def wrangle_locations(df):
+
+    loc_ids = []
+    loc_tuples = []
+    lat = []
+    lon = []
+    addr = []
+    addr_notes = []
+
+    i = 0
+    for row in df['Address1']:
+        # Tuple to determine uniqueness of a location
+        loc = (df['Latitude'].iloc[i], df['Longitude'].iloc[i])
+
+        if loc not in loc_tuples:
+            loc_tuples.append(loc)
+            loc_ids.append(i)
+            addr.append(df['Address1'].iloc[i])
+            lat.append(df['Latitude'].iloc[i])
+            lon.append(df['Longitude'].iloc[i])
+            addr_notes.append(df['AddressNote'].iloc[i])
+            i += 1
+
+    new_table = {'LocID': loc_ids, 'Address1' : addr, 'Latitude' : lat,
+                 'Longitude' : lon, 'AddressNotes' : addr_notes}
+
+    new_df = pd.DataFrame(new_table, columns = ['LocID', 'Address1',
+                                                'Latitude', 'Longitude',
+                                                'AddressNotes'])
+    return new_df
+
+        
 if __name__ == "__main__":
+
 
     print("\nReading CSV into panda's dataframe...")
     df = pd.read_csv(data_file, header=0)
 
+
     print("\nDisplaying original loaded dataframe:")
     print(df)
+
 
     print("\nWrangling data...")
     toilets = wrangle_toilets(df)
@@ -109,7 +144,7 @@ if __name__ == "__main__":
     dump_points = wrangle_dump_points(df)
     facility_types = wrangle_facility_types(df)
     facility_rel = wrangle_facility_rel(df, facility_types)
-
+    locations = wrangle_locations(df)
 
 
     print("\nThe following dataframes were created:")
@@ -127,13 +162,12 @@ if __name__ == "__main__":
     print(dump_points)
     print("\nFacility Types Relation")
     print(facility_types)
-
     print("\nFacility Relation")
     print(facility_rel)
+    print("\nLocations Relation")
+    print(locations)
     
     
-
-
 #########################################################################
 
 
