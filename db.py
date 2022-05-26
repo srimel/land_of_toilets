@@ -190,7 +190,7 @@ def create_facility_rel(db_conn):
                   "  FacilityID  INT," \
                   "  TypeID   INT," \
                   "  PRIMARY KEY (FacilityID, TypeID)," \
-                  "  CONSTRAINT fk_type_id FOREIGN KEY(TypeID)," \
+                  "  CONSTRAINT fk_type_id FOREIGN KEY(TypeID) " \
                   "  REFERENCES facility_types(TypeID);"
     cur.execute(create_stmt)
 
@@ -214,7 +214,7 @@ def create_location_rel(db_conn):
                   "  FacilityID  INT," \
                   "  LocID  INT," \
                   "  PRIMARY KEY (FacilityID, LocID," \
-                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
                   "  REFERENCES locations(LocID);"
     cur.execute(create_stmt)
 
@@ -236,7 +236,7 @@ def create_state_rel(db_conn):
                   "  LocID  INT," \
                   "  StateID  INT," \
                   "  PRIMARY KEY (LocID, StateID)," \
-                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
                   "  REFERENCES locations(LocID);"
     cur.execute(create_stmt)
 
@@ -258,7 +258,7 @@ def create_town_rel(db_conn):
                   "  LocID  INT," \
                   "  TownID  INT," \
                   "  PRIMARY KEY (LocID, TownID)," \
-                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
                   "  REFERENCES locations(LocID);"
     cur.execute(create_stmt)
 
