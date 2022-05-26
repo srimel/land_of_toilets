@@ -15,7 +15,7 @@ import re
 # Or so we hope...
 
 
-data_file = 'toilet_data.csv'
+data_file = 'test_data.csv' #'toilet_data.csv'
 
 
 # Wranglin' Section
@@ -230,53 +230,50 @@ def get_town_id(towns, key):
         i += 1
     return 0
 
-
-if __name__ == "__main__":
-
-
+def wrangle_all():
     print("\nReading CSV into panda's dataframe...")
-
     df = pd.read_csv(data_file, header=0)
 
-
-    print("\nDisplaying original loaded dataframe:")
-    print(df)
-
-
     print("\nWrangling data...")
-
     toilets = wrangle_toilets(df)
-    print("Got the toilets!")
+    print("Got the toilets dataframe!")
     handicap = wrangle_handicap(df)
-    print("Got the handicap!")
+    print("Got the handicap dataframe!")
     changing = wrangle_changing(df)
-    print("Got the changing!")
+    print("Got the changing dataframe!")
     access = wrangle_access(df)
-    print("Got the access!")
+    print("Got the access dataframe!")
     disposal = wrangle_disposal(df)
-    print("Got the disposal!")
+    print("Got the disposal dataframe!")
     dump_points = wrangle_dump_points(df)
-    print("Got the dump_points!")
+    print("Got the dump_points dataframe!")
 
     facility_types = wrangle_facility_types(df)
-    print("Got the facillity_types!")
+    print("Got the facillity_types dataframe!")
     facility_rel = wrangle_facility_rel(df, facility_types)
-    print("Got the facillity_rel!")
+    print("Got the facillity_rel dataframe!")
 
     locations = wrangle_locations(df)
-    print("Got the locations!")
+    print("Got the locations dataframe!")
     location_rel = wrangle_location_rel(df, locations)
-    print("Got the location_rel!")
+    print("Got the location_rel dataframe!")
 
     states = wrangle_states(df)
-    print("Got the states!")
+    print("Got the states dataframe!")
     state_rel = wrangle_state_rel(df,states)
-    print("Got the state_rel!")
+    print("Got the state_rel dataframe!")
 
     towns = wrangle_towns(df)
-    print("Got the towns!")
+    print("Got the towns dataframe!")
     town_rel = wrangle_town_rel(df,towns)
-    print("Got the town_rel!")
+    print("Got the town_rel dataframe!")
+
+
+
+if __name__ == "__main__":
+    wrangle_all()
+
+
 
 
     '''
