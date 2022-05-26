@@ -230,42 +230,61 @@ def get_town_id(towns, key):
         i += 1
     return 0
 
-def wrangle_all():
+# Requires to setup environment vars before running this 
+def wrangle_and_insert():
+
+    # df = wrangle(df)
+    # insert_df_rows_to_table(df, 'class_roster')
+
     print("\nReading CSV into panda's dataframe...")
     df = pd.read_csv(data_file, header=0)
 
     print("\nWrangling data...")
     toilets = wrangle_toilets(df)
+    insert_df_rows_to_table(toilets, 'toilets')
     print("Got the toilets dataframe!")
     handicap = wrangle_handicap(df)
+    insert_df_rows_to_table(handicap, 'handicap')
     print("Got the handicap dataframe!")
     changing = wrangle_changing(df)
+    insert_df_rows_to_table(changing, 'changing')
     print("Got the changing dataframe!")
     access = wrangle_access(df)
+    insert_df_rows_to_table(access, 'access')
     print("Got the access dataframe!")
     disposal = wrangle_disposal(df)
+    insert_df_rows_to_table(disposal, 'disposal')
     print("Got the disposal dataframe!")
     dump_points = wrangle_dump_points(df)
+    insert_df_rows_to_table(dump_points, 'dump_points')
     print("Got the dump_points dataframe!")
 
     facility_types = wrangle_facility_types(df)
+    insert_df_rows_to_table(facility_types, 'facility_types')
     print("Got the facillity_types dataframe!")
     facility_rel = wrangle_facility_rel(df, facility_types)
+    insert_df_rows_to_table(facility_rel, 'facility_rel')
     print("Got the facillity_rel dataframe!")
 
     locations = wrangle_locations(df)
+    insert_df_rows_to_table(locations, 'locations')
     print("Got the locations dataframe!")
     location_rel = wrangle_location_rel(df, locations)
+    insert_df_rows_to_table(location_rel, 'location_rel')
     print("Got the location_rel dataframe!")
 
     states = wrangle_states(df)
+    insert_df_rows_to_table(states, 'states')
     print("Got the states dataframe!")
     state_rel = wrangle_state_rel(df,states)
+    insert_df_rows_to_table(state_rel, 'state_rel')
     print("Got the state_rel dataframe!")
 
     towns = wrangle_towns(df)
+    insert_df_rows_to_table(towns, 'towns')
     print("Got the towns dataframe!")
     town_rel = wrangle_town_rel(df,towns)
+    insert_df_rows_to_table(town_rel, 'town_rel')
     print("Got the town_rel dataframe!")
 
 
