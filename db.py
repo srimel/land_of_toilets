@@ -2,10 +2,11 @@ import psycopg2
 from sqlalchemy import create_engine
 import os
 
+# This file contains functions that deal with postgresql
 
 def welcome():
     print("\nLand Of Toilets - ETL\n")
-
+    
 
 #Used to setup the environment variables for the session
 def setup_env():
@@ -30,8 +31,6 @@ def create_connection():
     return connection
 
 
-
-
 def insert_df_rows_to_table(df, table_name):
     engine = create_engine(
         f"postgresql://{os.environ['CLASS_DB_USERNAME']}:"
@@ -41,6 +40,36 @@ def insert_df_rows_to_table(df, table_name):
     )
     df.to_sql(table_name, engine, if_exists="append", index=False)
 
+
+def create_all_tables(db_conn):
+    create_toilets_table(db_conn)
+    print("Toilets probably created")
+    create_handicap_table(db_conn)
+    print("Toilets probably created")
+    create_changing_table(db_conn)
+    print("Toilets probably created")
+    create_access_table(db_conn)
+    print("Toilets probably created")
+    create_disposal_table(db_conn)
+    print("Toilets probably created")
+    create_dump_points_table(db_conn)
+    print("Toilets probably created")
+    create_facility_types_table(db_conn)
+    print("Toilets probably created")
+    create_facility_rel(db_conn)
+    print("Toilets probably created")
+    create_locations(db_conn)
+    print("Toilets probably created")
+    create_location_rel(db_conn)
+    print("Toilets probably created")
+    create_states(db_conn)
+    print("Toilets probably created")
+    create_state_rel(db_conn)
+    print("Toilets probably created")
+    create_towns(db_conn)
+    print("Toilets probably created")
+    create_town_rel(db_conn)
+    print("Toilets probably created")
 
 
 # Create toilets table
@@ -232,6 +261,13 @@ def create_town_rel(db_conn):
                   "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
                   "  REFERENCES locations(LocID);"
     cur.execute(create_stmt)
+
+
+# To test connection to db
+def example_query(db_conn):
+    cur = db_conn.cursor()
+    cur.execute("SELECT first, last FROM agent LIMIT 20;")
+    print(cur.fetchall())
 
 
 if __name__ == "__main__":
