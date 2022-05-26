@@ -62,6 +62,35 @@ def query_class_roster(db_conn):
     print(cur.fetchall())
 
 
+# Create toilets table
+def create_toilets_table(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE toilets(" \
+                " FacilityID INT," \
+                " URL varchar(256)," \
+                " Name varchar(128)," \
+                " Male bool,"\
+                " Female bool,"\
+                " Unisex bool,"\
+                " AllGender bool,"\
+                " ToiletNote varchar(1024),"\
+                " DrinkingWater bool,"\
+                " Shower bool,"\
+                " PRIMARY KEY (FacilityID));"
+    cur.execute(create_stmt)
+
+# Create handicap table
+
+# Create changing table
+
+# Create access table
+
+# Create disposal table
+
+# Create dump_points table
+
+# Create facility_types table
+
 if __name__ == "__main__":
 
     welcome()
