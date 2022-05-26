@@ -15,7 +15,7 @@ import re
 # Or so we hope...
 
 
-data_file = 'toilet_data.csv' #'test_data.csv' #
+data_file = 'test_data.csv' #'toilet_data.csv' # #
 
 
 # Wranglin' Section
@@ -23,44 +23,39 @@ data_file = 'toilet_data.csv' #'test_data.csv' #
 def wrangle_toilets(df):
     attributes = ['facilityid', 'url', 'name', 'male', 'female', 'unisex', 
                   'allgender', 'toiletnote', 'drinkingwater', 'shower']
-    df.rename(columns = {'FacilityID':'facilityid', 'URL':'url', 'Name':'name', 'Male':'male',
-                         'Female':'female', 'Unisex':'unisex', 
-                         'AllGender':'allgender', 'ToiletNote':'toiletnote',
-                         'DrinkingWater':'drinkingwater', 'Shower':'shower'}, 
-                         inplace = True)
     return df[attributes]
 
 
 def wrangle_handicap(df):
-    attributes = ['FacilityID', 'BYOSling', 'Ambulant', 'LHTransfer', 
-                  'RHTransfer']
+    attributes = ['facilityid', 'byosling', 'ambulant', 'lhtransfer', 
+                  'rhtransfer']
     return df[attributes]
 
 
 def wrangle_changing(df):
-    attributes = ['FacilityID', 'BabyChange', 'BabyCareRoom', 
-                  'BabyChangeNote', 'ACShower', 'AdultChange',
-                  'AdultChangeNote', 'ChangingPlaces']
+    attributes = ['facilityid', 'babychange', 'babycareroom', 
+                  'babychangenote', 'acshower', 'adultchange',
+                  'adultchangenote', 'changingplaces']
     return df[attributes]
 
 
 def wrangle_access(df):
-    attributes = ['FacilityID', 'KeyRequired', 'AccessNote', 
-                  'PaymentRequired', 'MLAK24', 'MLAKAfterHours', 
-                  'OpeningHoursNote', 'Accessible', 'Parking', 
-                  'ParkingAccessible', 'ParkingNote']
+    attributes = ['facilityid', 'keyrequired', 'accessnote', 
+                  'paymentrequired', 'mlak24', 'mlakafterhours', 
+                  'openinghoursnote', 'accessible', 'parking', 
+                  'parkingaccessible', 'parkingnote']
     return df[attributes]
 
 
 def wrangle_disposal(df):
-    attributes = ['FacilityID', 'SharpsDisposal', 'SanitaryDisposal', 
-                  'MensPadDisposal']
+    attributes = ['facilityid', 'sharpsdisposal', 'sanitarydisposal', 
+                  'menspaddisposal']
     return df[attributes]
 
 
 def wrangle_dump_points(df):
-    attributes = ['FacilityID', 'DPWashout', 'DPAfterHours', 
-                  'DumpPointNote']
+    attributes = ['facilityid', 'dpwashout', 'dpafterhours', 
+                  'dumppointnote']
     return df[attributes]
 
 
@@ -70,13 +65,13 @@ def wrangle_facility_types(df):
     facilities = []
     ids = []
     i = 1
-    for item in df['FacilityType']:
+    for item in df['facilitytype']:
         if item not in facilities:
             facilities.append(item)
             ids.append(i)
             i += 1
-    new_table = {'TypeID' : ids, 'Name' : facilities}
-    new_df = pd.DataFrame(new_table, columns = ['TypeID', 'Name'])
+    new_table = {'typeid' : ids, 'name' : facilities}
+    new_df = pd.DataFrame(new_table, columns = ['typeid', 'name'])
     return new_df
 
 
@@ -85,15 +80,15 @@ def wrangle_facility_types(df):
 #
 def wrangle_facility_rel(df, facility_type_df):
     type_ids = []
-    for row in df['FacilityType']:
+    for row in df['facilitytype']:
         j = 0 
-        for row2 in facility_type_df['Name']:
+        for row2 in facility_type_df['name']:
             if row == row2:
-                type_ids.append(facility_type_df['TypeID'].iloc[j])
+                type_ids.append(facility_type_df['typeid'].iloc[j])
                 break;
             j += 1
-    df['TypeID'] = type_ids
-    return df[['FacilityID', 'TypeID']]
+    df['typeid'] = type_ids
+    return df[['facilityid', 'typeid']]
 
 
 #Assumption is every location id has a unique lat/longitude?
@@ -106,23 +101,23 @@ def wrangle_locations(df):
     addr_notes = []
     index = 0
     new_id = 1
-    for row in df['Address1']:
+    for row in df['address1']:
         # Tuple to determine uniqueness of a location
-        loc = (df['Latitude'].iloc[index], df['Longitude'].iloc[index])
+        loc = (df['latitude'].iloc[index], df['longitude'].iloc[index])
         if loc not in loc_tuples:
             loc_tuples.append(loc)
             loc_ids.append(new_id)
-            addr.append(df['Address1'].iloc[index])
-            lat.append(df['Latitude'].iloc[index])
-            lon.append(df['Longitude'].iloc[index])
-            addr_notes.append(df['AddressNote'].iloc[index])
+            addr.append(df['address1'].iloc[index])
+            lat.append(df['latitude'].iloc[index])
+            lon.append(df['longitude'].iloc[index])
+            addr_notes.append(df['addressnote'].iloc[index])
             new_id += 1
         index += 1
-    new_table = {'LocID': loc_ids, 'Address1' : addr, 'Latitude' : lat,
-                 'Longitude' : lon, 'AddressNotes' : addr_notes}
-    new_df = pd.DataFrame(new_table, columns = ['LocID', 'Address1',
-                                                'Latitude', 'Longitude',
-                                                'AddressNotes'])
+    new_table = {'locid': loc_ids, 'address1' : addr, 'latitude' : lat,
+                 'longitude' : lon, 'addressnote' : addr_notes}
+    new_df = pd.DataFrame(new_table, columns = ['locid', 'address1',
+                                                'latitude', 'longitude',
+                                                'addressnote'])
     return new_df
 
 # This function is a performance bottleneck. With our current input size being
@@ -137,34 +132,35 @@ def wrangle_location_rel(df, loc_df):
     print("\nAttempting to wrangle location_rel.")
     print("(~45min runtime on linux servers)")
     print("Wrangling.", end="", flush=True)
-    for row in df['FacilityID']:
+    for row in df['facilityid']:
         j = 0
-        for row2 in loc_df['LocID']: 
-            if (df['Latitude'].iloc[i] == loc_df['Latitude'].iloc[j]) and (df['Longitude'].iloc[i] == loc_df['Longitude'].iloc[j]):
-                loc_ids.append(loc_df['LocID'].iloc[j])
+        for row2 in loc_df['locid']: 
+            if (df['latitude'].iloc[i] == loc_df['latitude'].iloc[j]) and (df['longitude'].iloc[i] == loc_df['longitude'].iloc[j]):
+                loc_ids.append(loc_df['locid'].iloc[j])
                 count += 1
                 break;
             j += 1
         if i % 367 == 0:
             print(".", end="", flush=True)
         i += 1
-    print("")
-    df['LocID'] = loc_ids
+    print("Done!")
+    #print("")
+    df['locid'] = loc_ids
     # Can use count to error check if we have time
-    return df[['FacilityID', 'LocID']]
+    return df[['facilityid', 'locid']]
 
 
 def wrangle_states(df):
     states = []
     state_ids = []
     new_id = 1
-    for row in df['State']:
+    for row in df['state']:
         if row not in states:
             states.append(row)
             state_ids.append(new_id)
             new_id += 1
-    new_table = {'StateID' : state_ids, 'State' : states}
-    new_df = pd.DataFrame(new_table, columns = ['StateID', 'State'])
+    new_table = {'stateid' : state_ids, 'state' : states}
+    new_df = pd.DataFrame(new_table, columns = ['stateid', 'state'])
     return new_df
 
 
@@ -173,24 +169,24 @@ def wrangle_state_rel(df, states):
     state_ids = []
     tuples = []
     i = 0
-    for row in df['LocID']:
-        tup = (df['LocID'].iloc[i], df['State'].iloc[i])
+    for row in df['locid']:
+        tup = (df['locid'].iloc[i], df['state'].iloc[i])
         if tup not in tuples:
             tuples.append(tup)
-            loc_ids.append(df['LocID'].iloc[i])
-            st_id = get_state_id(states, df['State'].iloc[i])
+            loc_ids.append(df['locid'].iloc[i])
+            st_id = get_state_id(states, df['state'].iloc[i])
             state_ids.append(st_id)
         i += 1
-    new_table = {'LocID' : loc_ids, 'StateID' : state_ids}
-    new_df = pd.DataFrame(new_table, columns = ['LocID', 'StateID'])
+    new_table = {'locid' : loc_ids, 'stateid' : state_ids}
+    new_df = pd.DataFrame(new_table, columns = ['locid', 'stateid'])
     return new_df
 
 
 def get_state_id(states, key):
     i = 0
-    for row in states['State']:
+    for row in states['state']:
         if row == key:
-            return states['StateID'].iloc[i]
+            return states['stateid'].iloc[i]
         i += 1
     return 0
 
@@ -199,13 +195,13 @@ def wrangle_towns(df):
     towns = []
     town_ids = []
     new_id = 1
-    for row in df['Town']:
+    for row in df['town']:
         if row not in towns:
             towns.append(row)
             town_ids.append(new_id)
             new_id += 1
-    new_table = {'TownID' : town_ids, 'Town' : towns}
-    new_df = pd.DataFrame(new_table, columns = ['TownID', 'Town'])
+    new_table = {'townid' : town_ids, 'town' : towns}
+    new_df = pd.DataFrame(new_table, columns = ['townid', 'town'])
     return new_df
 
 
@@ -214,24 +210,24 @@ def wrangle_town_rel(df, towns):
     town_ids = []
     tuples = []
     i = 0
-    for row in df['LocID']:
-        tup = (df['LocID'].iloc[i], df['Town'].iloc[i])
+    for row in df['locid']:
+        tup = (df['locid'].iloc[i], df['town'].iloc[i])
         if tup not in tuples:
             tuples.append(tup)
-            loc_ids.append(df['LocID'].iloc[i])
-            t_id = get_town_id(towns, df['Town'].iloc[i])
+            loc_ids.append(df['locid'].iloc[i])
+            t_id = get_town_id(towns, df['town'].iloc[i])
             town_ids.append(t_id)
         i += 1
-    new_table = {'LocID' : loc_ids, 'TownID' : town_ids}
-    new_df = pd.DataFrame(new_table, columns = ['LocID', 'TownID'])
+    new_table = {'locid' : loc_ids, 'townid' : town_ids}
+    new_df = pd.DataFrame(new_table, columns = ['locid', 'townid'])
     return new_df
 
 
 def get_town_id(towns, key):
     i = 0
-    for row in towns['Town']:
+    for row in towns['town']:
         if row == key:
-            return towns['TownID'].iloc[i]
+            return towns['townid'].iloc[i]
         i += 1
     return 0
 
@@ -242,6 +238,7 @@ def wrangle_and_insert():
 
     print("\nReading CSV into panda's dataframe...")
     df = pd.read_csv(data_file, header=0)
+    df.columns = map(str.lower, df.columns) #this was certainly handy...
 
     print("\nWrangling data...")
     toilets = wrangle_toilets(df)

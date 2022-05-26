@@ -200,9 +200,10 @@ def create_locations(db_conn):
     cur = db_conn.cursor()
     create_stmt = "CREATE TABLE locations (" \
                   "  LocID  INT," \
-                  "  Adress1   VARCHAR(256)," \
+                  "  Address1   VARCHAR(256)," \
                   "  Latitude   FLOAT," \
                   "  Longitude   FLOAT," \
+                  "  AddressNote   VARCHAR(256)," \
                   "  PRIMARY KEY (LocID));"
     cur.execute(create_stmt)
 
