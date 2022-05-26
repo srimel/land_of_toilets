@@ -91,6 +91,84 @@ def create_toilets_table(db_conn):
 
 # Create facility_types table
 
+
+#######################################
+
+
+# Create facility_rel table
+def create_facility_rel(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE facility_rel (" \
+                  "  FacilityID  INT," \
+                  "  TypeID   INT," \
+                  "  PRIMARY KEY (FacilityID, TypeID)," \
+                  "  CONSTRAINT fk_type_id FOREIGN KEY(TypeID)," \
+                  "  REFERENCES facility_types(TypeID);"
+    cur.execute(create_stmt)
+
+# Create locations table
+def create_locations(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE locations (" \
+                  "  LocID  INT," \
+                  "  Adress1   VARCHAR(256)," \
+                  "  Latitude   FLOAT," \
+                  "  Longitude   FLOAT," \
+                  "  PRIMARY KEY (LocID);"
+    cur.execute(create_stmt)
+
+# Create location_rel table
+def create_location_rel(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE location_rel (" \
+                  "  FacilityID  INT," \
+                  "  LocID  INT," \
+                  "  PRIMARY KEY (FacilityID, LocID," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  REFERENCES locations(LocID);"
+    cur.execute(create_stmt)
+
+# Create states table
+def create_states(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE states (" \
+                  "  StateID  INT," \
+                  "  State  VARCHAR(16)," \
+                  "  PRIMARY KEY (StateID);"
+    cur.execute(create_stmt)
+
+# Create state_rel table
+def create_state_rel(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE state_rel (" \
+                  "  LocID  INT," \
+                  "  StateID  INT," \
+                  "  PRIMARY KEY (LocID, StateID)," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  REFERENCES locations(LocID);"
+    cur.execute(create_stmt)
+
+# Create towns table
+def create_towns(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE towns (" \
+                  "  TownID  INT," \
+                  "  Town  VARCHAR(128)," \
+                  "  PRIMARY KEY (TownID);"
+    cur.execute(create_stmt)
+
+# Create town_rel table
+def create_town_rel(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE town_rel (" \
+                  "  LocID  INT," \
+                  "  TownID  INT," \
+                  "  PRIMARY KEY (LocID, TownID)," \
+                  "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID)," \
+                  "  REFERENCES locations(LocID);"
+    cur.execute(create_stmt)
+
+
 if __name__ == "__main__":
 
     welcome()
