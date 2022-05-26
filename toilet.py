@@ -128,9 +128,7 @@ def wrangle_location_rel(df, loc_df):
     ld_buff_size = 367
     count = 0
     loc_ids = []
-    print("\nOh crap, a bottleneck!")
     print("\nAttempting to wrangle location_rel.")
-    print("(~45min runtime on linux servers)")
     print("Wrangling.", end="", flush=True)
     for row in df['facilityid']:
         j = 0
@@ -143,7 +141,7 @@ def wrangle_location_rel(df, loc_df):
         if i % 367 == 0:
             print(".", end="", flush=True)
         i += 1
-    print("Done!")
+    print("Done!\n")
     #print("")
     df['locid'] = loc_ids
     # Can use count to error check if we have time
