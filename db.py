@@ -66,7 +66,7 @@ def query_class_roster(db_conn):
 def create_toilets_table(db_conn):
     cur = db_conn.cursor()
     create_stmt = "CREATE TABLE toilets(" \
-                " FacilityID INT," \
+                " FacilityID int," \
                 " URL varchar(256)," \
                 " Name varchar(128)," \
                 " Male bool,"\
@@ -80,8 +80,35 @@ def create_toilets_table(db_conn):
     cur.execute(create_stmt)
 
 # Create handicap table
+def create_handicap_table(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE handicap(" \
+                " FacilityID int," \
+                " BYOSling bool,"\
+                " Ambulant bool,"\
+                " LHTransfer bool,"\
+                " RHTransfer bool,"\
+                " PRIMARY KEY (FacilityID),"\
+                " CONSTRAINT handicap_fk FOREIGN KEY(FacilityID) "\
+                " REFERENCES toilets(facilityID));"
+    cur.execute(create_stmt)
 
 # Create changing table
+def create_changing_table(db_conn):
+    cur = db_conn.cursor()
+    create_stmt = "CREATE TABLE changing(" \
+                " FacilityID int," \
+                " BabyChange bool,"\
+                " BabyCareRoom bool,"\
+                " BabyChangeNote varchar(256)"\
+                " ACShower bool,"\
+                " AdultChange bool,"\
+                " AdultChangeNote varchar(256),"\
+                " ChangingPlaces book,"\
+                " PRIMARY KEY (FacilityID),"\
+                " CONSTRAINT changing_fk FOREIGN KEY(FacilityID) "\
+                " REFERENCES toilets(facilityID));"
+    cur.execute(create_stmt)
 
 # Create access table
 
