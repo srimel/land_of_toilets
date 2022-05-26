@@ -21,8 +21,13 @@ data_file = 'toilet_data.csv' #'test_data.csv' #
 # Wranglin' Section
 
 def wrangle_toilets(df):
-    attributes = ['FacilityID', 'Name', 'Male', 'Female', 'Unisex', 
-                  'AllGender', 'ToiletNote', 'DrinkingWater', 'Shower']
+    attributes = ['facilityid', 'url', 'name', 'male', 'female', 'unisex', 
+                  'allgender', 'toiletnote', 'drinkingwater', 'shower']
+    df.rename(columns = {'FacilityID':'facilityid', 'URL':'url', 'Name':'name', 'Male':'male',
+                         'Female':'female', 'Unisex':'unisex', 
+                         'AllGender':'allgender', 'ToiletNote':'toiletnote',
+                         'DrinkingWater':'drinkingwater', 'Shower':'shower'}, 
+                         inplace = True)
     return df[attributes]
 
 
