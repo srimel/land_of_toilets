@@ -112,10 +112,10 @@ def create_changing_table(db_conn):
                 " FacilityID INT," \
                 " BabyChange BOOL,"\
                 " BabyCareRoom BOOL,"\
-                " BabyChangeNote VARCHAR(256),"\
+                " BabyChangeNote VARCHAR(400),"\
                 " ACShower BOOL,"\
                 " AdultChange BOOL,"\
-                " AdultChangeNote VARCHAR(256),"\
+                " AdultChangeNote VARCHAR(400),"\
                 " ChangingPlaces BOOL,"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT changing_fk FOREIGN KEY(FacilityID) "\
@@ -129,16 +129,16 @@ def create_access_table(db_conn):
     create_stmt = "CREATE TABLE access(" \
                 " FacilityID INT," \
                 " KeyRequired BOOL,"\
-                " AccessNote VARCHAR(128),"\
+                " AccessNote VARCHAR(400),"\
                 " PaymentRequired BOOL,"\
                 " MLAK24 BOOL,"\
                 " MLAKAfterHours BOOL,"\
                 " OpeningHours VARCHAR(256),"\
-                " OpeningHoursNote VARCHAR(256),"\
+                " OpeningHoursNote VARCHAR(400),"\
                 " Accessible BOOL,"\
                 " Parking BOOL,"\
                 " ParkingAccessible BOOL,"\
-                " ParkingNote VARCHAR(256),"\
+                " ParkingNote VARCHAR(400),"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT access_fk FOREIGN KEY(FacilityID) "\
                 " REFERENCES toilets(FacilityID));"
@@ -166,7 +166,7 @@ def create_dump_points_table(db_conn):
                 " FacilityID INT," \
                 " DPWashout BOOL,"\
                 " DPAfterHours BOOL,"\
-                " DumpPointNote VARCHAR(256),"\
+                " DumpPointNote VARCHAR(400),"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT dump_points_fk FOREIGN KEY(FacilityID) "\
                 " REFERENCES toilets(FacilityID));"
@@ -203,7 +203,7 @@ def create_locations(db_conn):
                   "  Address1   VARCHAR(256)," \
                   "  Latitude   FLOAT," \
                   "  Longitude   FLOAT," \
-                  "  AddressNote   VARCHAR(256)," \
+                  "  AddressNote   VARCHAR(400)," \
                   "  PRIMARY KEY (LocID));"
     cur.execute(create_stmt)
 
