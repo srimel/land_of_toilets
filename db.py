@@ -203,6 +203,7 @@ def create_locations(db_conn):
                   "  Address1   VARCHAR(256)," \
                   "  Latitude   FLOAT," \
                   "  Longitude   FLOAT," \
+                  "  AddressNote   VARCHAR(256)," \
                   "  PRIMARY KEY (LocID));"
     cur.execute(create_stmt)
 
