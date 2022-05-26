@@ -90,7 +90,7 @@ def create_handicap_table(db_conn):
                 " RHTransfer BOOL,"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT handicap_fk FOREIGN KEY(FacilityID) "\
-                " REFERENCES toilets(facilityID));"
+                " REFERENCES toilets(FacilityID));"
     cur.execute(create_stmt)
 
 # Create changing table
@@ -100,14 +100,14 @@ def create_changing_table(db_conn):
                 " FacilityID INT," \
                 " BabyChange BOOL,"\
                 " BabyCareRoom BOOL,"\
-                " BabyChangeNote VARCHAR(256)"\
+                " BabyChangeNote VARCHAR(256),"\
                 " ACShower BOOL,"\
                 " AdultChange BOOL,"\
                 " AdultChangeNote VARCHAR(256),"\
                 " ChangingPlaces BOOL,"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT changing_fk FOREIGN KEY(FacilityID) "\
-                " REFERENCES toilets(facilityID));"
+                " REFERENCES toilets(FacilityID));"
     cur.execute(create_stmt)
 
 # Create access table
@@ -128,7 +128,7 @@ def create_access_table(db_conn):
                 " ParkingNote VARCHAR(256),"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT access_fk FOREIGN KEY(FacilityID) "\
-                " REFERENCES toilets(facilityID));"
+                " REFERENCES toilets(FacilityID));"
     cur.execute(create_stmt)
 
 # Create disposal table
@@ -141,7 +141,7 @@ def create_disposal_table(db_conn):
                 " MensPadDisposal BOOL,"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT disposal_fk FOREIGN KEY(FacilityID) "\
-                " REFERENCES toilets(facilityID));"
+                " REFERENCES toilets(FacilityID));"
     cur.execute(create_stmt)
 
 # Create dump_points table
@@ -154,7 +154,7 @@ def create_dump_points_table(db_conn):
                 " DumpPointNote VARCHAR(256),"\
                 " PRIMARY KEY (FacilityID),"\
                 " CONSTRAINT dump_points_fk FOREIGN KEY(FacilityID) "\
-                " REFERENCES toilets(facilityID));"
+                " REFERENCES toilets(FacilityID));"
     cur.execute(create_stmt)
 
 # Create facility_types table
@@ -162,7 +162,8 @@ def create_facility_types_table(db_conn):
     cur = db_conn.cursor()
     create_stmt = "CREATE TABLE facility_types(" \
                 " TypeID INT," \
-                " Name VARCHAR(128));"
+                " Name VARCHAR(128),"\
+                " PRIMARY KEY (TypeID));"
     cur.execute(create_stmt)
 
 if __name__ == "__main__":
