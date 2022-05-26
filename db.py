@@ -190,8 +190,8 @@ def create_facility_rel(db_conn):
                   "  FacilityID  INT," \
                   "  TypeID   INT," \
                   "  PRIMARY KEY (FacilityID, TypeID)," \
-                  "  CONSTRAINT fk_type_id FOREIGN KEY(TypeID) " \
-                  "  REFERENCES facility_types(TypeID);"
+                  "  CONSTRAINT facility_rel_fk FOREIGN KEY(TypeID) " \
+                  "  REFERENCES facility_types(TypeID));"
     cur.execute(create_stmt)
 
 
@@ -203,7 +203,7 @@ def create_locations(db_conn):
                   "  Adress1   VARCHAR(256)," \
                   "  Latitude   FLOAT," \
                   "  Longitude   FLOAT," \
-                  "  PRIMARY KEY (LocID);"
+                  "  PRIMARY KEY (LocID));"
     cur.execute(create_stmt)
 
 
@@ -213,9 +213,9 @@ def create_location_rel(db_conn):
     create_stmt = "CREATE TABLE location_rel (" \
                   "  FacilityID  INT," \
                   "  LocID  INT," \
-                  "  PRIMARY KEY (FacilityID, LocID," \
+                  "  PRIMARY KEY (FacilityID, LocID)," \
                   "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
-                  "  REFERENCES locations(LocID);"
+                  "  REFERENCES locations(LocID));"
     cur.execute(create_stmt)
 
 
@@ -225,7 +225,7 @@ def create_states(db_conn):
     create_stmt = "CREATE TABLE states (" \
                   "  StateID  INT," \
                   "  State  VARCHAR(16)," \
-                  "  PRIMARY KEY (StateID);"
+                  "  PRIMARY KEY (StateID));"
     cur.execute(create_stmt)
 
 
@@ -237,7 +237,7 @@ def create_state_rel(db_conn):
                   "  StateID  INT," \
                   "  PRIMARY KEY (LocID, StateID)," \
                   "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
-                  "  REFERENCES locations(LocID);"
+                  "  REFERENCES locations(LocID));"
     cur.execute(create_stmt)
 
 
@@ -247,7 +247,7 @@ def create_towns(db_conn):
     create_stmt = "CREATE TABLE towns (" \
                   "  TownID  INT," \
                   "  Town  VARCHAR(128)," \
-                  "  PRIMARY KEY (TownID);"
+                  "  PRIMARY KEY (TownID));"
     cur.execute(create_stmt)
 
 
@@ -259,7 +259,7 @@ def create_town_rel(db_conn):
                   "  TownID  INT," \
                   "  PRIMARY KEY (LocID, TownID)," \
                   "  CONSTRAINT fk_loc_id FOREIGN KEY(LocID) " \
-                  "  REFERENCES locations(LocID);"
+                  "  REFERENCES locations(LocID));"
     cur.execute(create_stmt)
 
 
