@@ -51,8 +51,6 @@ SELECT 100*(SELECT COUNT(*) FROM access JOIN changing USING(facilityID) WHERE pa
 FROM toilets JOIN changing USING(facilityID) WHERE babychange=True;
 
 --11. What percentage of men’s toilets contain baby changing stations?
-<<<<<<< HEAD
-=======
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE male=True AND babychange=True)/COUNT(*) AS "% Men's Restrooms with Baby Changing Stations"
 FROM toilets JOIN changing USING (facilityID) WHERE male=True AND babychange=False;
 
@@ -64,7 +62,6 @@ FROM toilets JOIN changing USING (facilityID) WHERE female=True AND babychange=F
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE unisex=True AND babychange=True)/COUNT(*) AS "% Unisex Restrooms with Baby Changing Stations"
 FROM toilets JOIN changing USING (facilityID) WHERE unisex=True AND babychange=False;
 
->>>>>>> 6abf160e8d401210211a15a254f4f9359320b5b8
 
 --12. How many carpark dump points are there?
 SELECT COUNT(*) as "Number of Carpark dumpoints"
@@ -116,4 +113,3 @@ WHERE drinkingwater = true AND shower = true;
  SELECT COUNT(mlak24) as "Toilets requiring master locksmith's access key"
  FROM toilets join access using(facilityid)
  WHERE mlak24 = false;
-
