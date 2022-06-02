@@ -35,9 +35,25 @@ WHERE state='WA' AND paymentrequired=TRUE;
 --9. What percentage of public toilets are free?
 --10. What percentage of public toilets with baby changing stations are free?
 --11. What percentage of men’s toilets contain baby changing stations?
+
 --12. How many carpark dump points are there?
---13. What is the average number of toilets per city?
---14. Are public toilets with showers more likely to have a fee than those without?
+SELECT COUNT(*) as "Number of Carpark dumpoints"
+FROM toilets t join dump_points using(facilityid) join facility_rel using(facilityid) join facility_types ft using(typeid)
+WHERE ft.name = 'Car park';
+
+--13. What is the average number of toilets per city within each state?
+SELECT state, AVG(c.count) as "Average Number of toilets per city"
+FROM (
+        SELECT town, COUNT(facilityid)
+        FROM toilets natural join location_rel natural join town_rel natural join towns
+        GROUP BY (town)
+     ) as c join towns using(town) join town_rel using(townid) join location_rel using(locid) join state_rel using(locid) join states using(stateid)
+GROUP BY(state);
+
+--14. Which public toilets with showers also have a fee in New South Wales?
+SELECT facilityid, name, state
+FROM toilets natural join location_rel natural join state_rel natural join states natural join access
+WHERE paymentrequired = true AND state = 'NSW';
 
 --15. How many toilets with sharp disposals are in every state?
 SELECT state, COUNT(*) as "Toilets with sharp disposal"
