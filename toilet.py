@@ -40,7 +40,7 @@ def wrangle_changing(df):
 
 def wrangle_access(df):
     attributes = ['facilityid', 'keyrequired', 'accessnote', 
-                  'paymentrequired', 'mlak24', 'mlakafterhours', 
+                  'paymentrequired', 'mlak24', 'mlakafterhours', 'openinghours',
                   'openinghoursnote', 'accessible', 'parking', 
                   'parkingaccessible', 'parkingnote']
     return df[attributes]

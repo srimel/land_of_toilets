@@ -21,8 +21,9 @@ location_rel JOIN locations USING(locID) JOIN town_rel USING(locID)
 JOIN towns T USING(townID) 
 GROUP BY town ORDER BY town;
 
-
 --5. What percentage of toilets are open 24 hours a day?
+
+
 --6. How many toilets in WA require payment?
 --7. How many unisex toilets are in a park or reserve?
 --8. How many toilets are on 1 Bay Street in Glebe?
