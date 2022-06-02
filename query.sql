@@ -1,4 +1,4 @@
-SELECT * FROM toilets LIMIT 20;
+--SELECT * FROM toilets LIMIT 20;
 
 --\o ./results/q1.txt
 --1. How many toilets in Cooma have parking?

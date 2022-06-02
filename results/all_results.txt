@@ -1,27 +1,3 @@
- facilityid |                 url                  |         name          | male | female | unisex | allgender | toiletnote | drinkingwater | shower 
-------------+--------------------------------------+-----------------------+------+--------+--------+-----------+------------+---------------+--------
-          1 | https://toiletmap.gov.au/facility/1  | Sandy Beach Reserve   | t    | t      | f      | f         |            | f             | t
-          2 | https://toiletmap.gov.au/facility/2  | Point Reserve         | t    | t      | f      | f         |            | f             | f
-          3 | https://toiletmap.gov.au/facility/3  | Success Hill Reserve  | t    | t      | f      | f         |            | t             | t
-          4 | https://toiletmap.gov.au/facility/4  | Jubilee Reserve       | t    | t      | f      | f         |            | f             | f
-          5 | https://toiletmap.gov.au/facility/5  | Ashfield Reserve      | t    | t      | f      | f         |            | f             | f
-          6 | https://toiletmap.gov.au/facility/6  | BIC Reserve           | t    | t      | f      | f         |            | f             | f
-          7 | https://toiletmap.gov.au/facility/7  | Mary Crescent Reserve | t    | t      | f      | f         |            | f             | f
-          9 | https://toiletmap.gov.au/facility/9  | Bassendean Oval 3     | t    | t      | f      | f         |            | f             | f
-         15 | https://toiletmap.gov.au/facility/15 | Apex Park             | t    | t      | f      | f         |            | f             | f
-         16 | https://toiletmap.gov.au/facility/16 | Lions Park            | t    | t      | f      | f         |            | f             | f
-         17 | https://toiletmap.gov.au/facility/17 | Parella Street        | t    | t      | f      | f         |            | f             | t
-         18 | https://toiletmap.gov.au/facility/18 | Nolan Park            | f    | f      | t      | f         |            | f             | f
-         20 | https://toiletmap.gov.au/facility/20 | Binda Park            | f    | f      | f      | f         |            | f             | f
-         21 | https://toiletmap.gov.au/facility/21 | Spring Park           | t    | t      | f      | f         |            | f             | f
-         22 | https://toiletmap.gov.au/facility/22 | Lions Park            | t    | t      | f      | f         |            | f             | f
-         23 | https://toiletmap.gov.au/facility/23 | Drummond Street       | t    | t      | f      | f         |            | f             | f
-         24 | https://toiletmap.gov.au/facility/24 | Centenary Park        | t    | t      | f      | f         |            | f             | f
-         25 | https://toiletmap.gov.au/facility/25 | Capella Street        | t    | t      | f      | f         |            | f             | f
-         26 | https://toiletmap.gov.au/facility/26 | East Palmerston       | t    | t      | f      | f         |            | f             | f
-         28 | https://toiletmap.gov.au/facility/28 | Fred Drew Park        | t    | t      | f      | f         |            | f             | f
-(20 rows)
-
  # Toilets in Cooma with Parking 
 ---------------------------------
                                4
@@ -6369,7 +6345,7 @@
 
  % Austrailian Toilets Open 24 Hours a Day 
 -------------------------------------------
-                                         0
+                                        46
 (1 row)
 
  # Toilets in WA That Require Money 
