@@ -38,27 +38,35 @@ WHERE state='WA' AND paymentrequired=TRUE;
 --12. How many carpark dump points are there?
 --13. What is the average number of toilets per city?
 --14. Are public toilets with showers more likely to have a fee than those without?
---15. Which state has the most toilets with sharps disposal?
---16. Do most “park or reserve” toilets have parking?
+
+--15. How many toilets with sharp disposals are in every state?
+SELECT state, COUNT(*) as "Toilets with sharp disposal"
+FROM toilets natural join disposal natural join state_rel join states using(stateid)
+WHERE  sharpsdisposal = true
+GROUP BY(state);
+
+
+--16. How many toilets that are accessible have parking?
+SELECT COUNT(*) as "Number of accessible toilets with parking"
+FROM toilets natural join access
+WHERE accessible = true AND parking = true;
 
 --17. Which toilets in VIC are ambulant?
-
-
+SELECT facilityid, name, state
+FROM toilets natural join location_rel natural join state_rel natural join states natural join handicap
+WHERE ambulant = true AND state = 'VIC';
 
 --18. How many restrooms have an accessible toilet?
-
 SELECT COUNT(*) as "Numbe of toilets that are accessible"
 FROM toilets natural join access
 WHERE accessible = true;
 
 --19. How many toilets have drinking water and showers?
-
 SELECT COUNT(*) as "Number of toilets with water fountain and showers"
 FROM toilets 
 WHERE drinkingwater = true AND shower = true;
 
 --20. How many toilets require the master locksmith’s access key (MLAK) to enter?
-
  SELECT COUNT(mlak24) as "Toilets requiring master locksmith's access key"
  FROM toilets join access using(facilityid)
  WHERE mlak24 = false;
