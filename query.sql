@@ -54,6 +54,15 @@ FROM toilets JOIN changing USING(facilityID) WHERE babychange=True;
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE male=True AND babychange=True)/COUNT(*) AS "% Men's Restrooms with Baby Changing Stations"
 FROM toilets JOIN changing USING (facilityID) WHERE male=True AND babychange=False;
 
+--11.5 What percentage of women's toilets contain baby changing stations?
+SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE female=True AND babychange=True)/COUNT(*) AS "% Women's Restrooms with Baby Changing Stations"
+FROM toilets JOIN changing USING (facilityID) WHERE female=True AND babychange=False;
+
+--11.75 What percentage of women's toilets contain baby changing stations?
+SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE unisex=True AND babychange=True)/COUNT(*) AS "% Unisex Restrooms with Baby Changing Stations"
+FROM toilets JOIN changing USING (facilityID) WHERE unisex=True AND babychange=False;
+
+
 --12. How many carpark dump points are there?
 --13. What is the average number of toilets per city?
 --14. Are public toilets with showers more likely to have a fee than those without?
