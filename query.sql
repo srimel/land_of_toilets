@@ -33,7 +33,26 @@ GROUP BY town ORDER BY town;
 --14. Are public toilets with showers more likely to have a fee than those without?
 --15. Which state has the most toilets with sharps disposal?
 --16. Do most “park or reserve” toilets have parking?
---17. What percentage of toilets in VIC are ambulant?
---18. What percentage of toilets have an accessible toilet?
---19. Do most toilets with drinking water also have a shower?
+
+--17. Which toilets in VIC are ambulant?
+
+
+
+--18. How many restrooms have an accessible toilet?
+
+SELECT COUNT(*) as "Numbe of toilets that are accessible"
+FROM toilets natural join access
+WHERE accessible = true;
+
+--19. How many toilets have drinking water and showers?
+
+SELECT COUNT(*) as "Number of toilets with water fountain and showers"
+FROM toilets 
+WHERE drinkingwater = true AND shower = true;
+
 --20. How many toilets require the master locksmith’s access key (MLAK) to enter?
+
+ SELECT COUNT(mlak24) as "Toilets requiring master locksmith's access key"
+ FROM toilets join access using(facilityid)
+ WHERE mlak24 = false;
+
