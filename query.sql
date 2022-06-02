@@ -58,7 +58,7 @@ FROM toilets JOIN changing USING (facilityID) WHERE male=True AND babychange=Fal
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE female=True AND babychange=True)/COUNT(*) AS "% Women's Restrooms with Baby Changing Stations"
 FROM toilets JOIN changing USING (facilityID) WHERE female=True AND babychange=False;
 
---11.75 What percentage of women's toilets contain baby changing stations?
+--11.75 What percentage of unisex toilets contain baby changing stations?
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN changing USING(facilityID) WHERE unisex=True AND babychange=True)/COUNT(*) AS "% Unisex Restrooms with Baby Changing Stations"
 FROM toilets JOIN changing USING (facilityID) WHERE unisex=True AND babychange=False;
 
