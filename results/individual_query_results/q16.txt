@@ -1,0 +1,5 @@
+ Number of accessible toilets with parking 
+-------------------------------------------
+                                      7673
+(1 row)
+

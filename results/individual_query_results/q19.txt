@@ -1,0 +1,5 @@
+ Number of toilets with water fountain and showers 
+---------------------------------------------------
+                                               400
+(1 row)
+

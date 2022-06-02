@@ -1,0 +1,5 @@
+ Numbe of toilets that are accessible 
+--------------------------------------
+                                11779
+(1 row)
+
