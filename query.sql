@@ -31,9 +31,24 @@ JOIN state_rel USING(locID) JOIN states USING(stateID)
 WHERE state='WA' AND paymentrequired=TRUE;
 
 --7. How many unisex toilets are in a park or reserve?
+SELECT count(*) FROM toilets JOIN facility_rel USING(FacilityID) JOIN facility_types T USING(typeID)
+WHERE T.name='Park or reserve' AND unisex=True;
+
+
 --8. How many toilets are on 1 Bay Street in Glebe?
+SELECT COUNT(*) FROM
+location_rel JOIN locations USING(locID) JOIN town_rel USING(locID) JOIN towns USING(townid)
+WHERE town='Glebe' AND address1='1 Bay Street';
+
+
 --9. What percentage of public toilets are free?
+SELECT 100*(SELECT COUNT(*) FROM access WHERE paymentrequired=False)/COUNT(*) AS  "Percentage of the Free" FROM toilets;
+
+
 --10. What percentage of public toilets with baby changing stations are free?
+SELECT 100*(SELECT COUNT(*) FROM access JOIN changing USING(facilityID) WHERE paymentrequired=False and babychange=True)/COUNT(*) AS  "Percentage of the Free" 
+FROM toilets JOIN changing USING(facilityID) WHERE babychange=True;
+
 --11. What percentage of men’s toilets contain baby changing stations?
 --12. How many carpark dump points are there?
 --13. What is the average number of toilets per city?
