@@ -1,7 +1,8 @@
 SELECT * FROM toilets LIMIT 20;
+
 --1. How many toilets in Cooma have parking?
-SELECT COUNT(*) FROM toilets
-JOIN location_rel USING(FacilityID) JOIN locations USING(LocID) JOIN town_rel USING(LocID)
+SELECT COUNT(*)
+FROM location_rel JOIN locations USING(locID) JOIN town_rel USING(LocID)
 JOIN towns USING(TownID) JOIN access USING(facilityID)
 WHERE Town='Cooma' AND parking=True;
 
@@ -9,8 +10,8 @@ WHERE Town='Cooma' AND parking=True;
 SELECT COUNT(*) FROM toilets;
 
 --3. What are all the sporting facility toilets that are also dump points? // REWORD: How many sporting facility toilets are also dump points?
-SELECT COUNT(*) FROM toilets 
-JOIN facility_rel USING(facilityID) JOIN facility_types FT USING(typeid) 
+SELECT COUNT(*)
+FROM facility_rel JOIN facility_types FT USING(typeid)
 JOIN dump_points USING (facilityID)
 WHERE FT.name='Sporting facility';
 
