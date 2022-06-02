@@ -46,7 +46,7 @@ SELECT 100*(SELECT COUNT(*) FROM access WHERE paymentrequired=False)/COUNT(*) AS
 
 
 --10. What percentage of public toilets with baby changing stations are free?
-SELECT 100*(SELECT COUNT(*) FROM access JOIN changing USING(facilityID) WHERE paymentrequired=False and babychange=True)/COUNT(*) AS  "Percentage of the Free" 
+SELECT 100*(SELECT COUNT(*) FROM access JOIN changing USING(facilityID) WHERE paymentrequired=False and babychange=True)/COUNT(*) AS  "Percentage of the Free... With Babies" 
 FROM toilets JOIN changing USING(facilityID) WHERE babychange=True;
 
 --11. What percentage of men’s toilets contain baby changing stations?
