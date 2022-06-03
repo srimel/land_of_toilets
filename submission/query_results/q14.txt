@@ -1,0 +1,22 @@
+ facilityid |                 name                 | state 
+------------+--------------------------------------+-------
+       3188 | Tourist & Travellers Centre          | NSW
+      10963 | Hyde Park - North 1                  | NSW
+      33491 | Deniliquin Dump Point                | NSW
+      33559 | Tenterfield Showground Dump Point    | NSW
+      33567 | Wagga Wagga Showgrounds              | NSW
+      50335 | St Ives Shopping Village 1           | NSW
+      55813 | Stocko                               | NSW
+      56023 | Packsaddle Roadhouse                 | NSW
+      56508 | Glendora Campground                  | NSW
+      56810 | Brackens Hut                         | NSW
+      57531 | Bombala Caravan Park Dump Point      | NSW
+      57538 | Cessnock Showground Dump Point       | NSW
+      57567 | Gundagai Cabins & Tourist Park       | NSW
+      57583 | Kyogle Showground Dump Point         | NSW
+      57586 | Lismore Showgrounds Dump Point       | NSW
+      57597 | Mittagong Caravan Park Dump Point    | NSW
+      57645 | Camp Blackman Dump Point             | NSW
+      59195 | Clemton Park Village Shopping Centre | NSW
+(18 rows)
+

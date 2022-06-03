@@ -1,0 +1,214 @@
+ facilityid |                         name                          | state 
+------------+-------------------------------------------------------+-------
+        253 | Lloyd Street                                          | VIC
+        270 | Great Western                                         | VIC
+        548 | Mortlake Tea Tree Lake                                | VIC
+        557 | Woorndoo                                              | VIC
+        562 | Dudley W Cornell Park                                 | VIC
+        563 | May Park                                              | VIC
+        572 | Horsham Town Hall                                     | VIC
+       1087 | Central Park                                          | VIC
+       1239 | Centenary Park                                        | VIC
+       1338 | Princes Park 1                                        | VIC
+       1489 | Rudkins Reserve                                       | VIC
+       1873 | Botanical Gardens                                     | VIC
+       1883 | Cunningham Pier                                       | VIC
+       2264 | Chester Street                                        | VIC
+       2509 | Merriwa Park Bike Hub                                 | VIC
+       3813 | Victory Park Chelsea Foreshore                        | VIC
+       3815 | Wallum Road                                           | VIC
+       3822 | Dixon Street  Mentone Foreshore                       | VIC
+       3828 | The Grange - Westall                                  | VIC
+       3836 | Racecourse Reserve - Mentone                          | VIC
+       3839 | Keeley Park Playground Main Road                      | VIC
+       3842 | Roy Dore Reserve                                      | VIC
+       3851 | Kingston Heath Reserve                                | VIC
+       3866 | Boat Ramp                                             | VIC
+       4195 | Point Lonsdale Foreshore                              | VIC
+       4245 | Gardiner Reserve                                      | VIC
+       4623 | Rocklands Reservoir                                   | VIC
+       5102 | Whittlesea Showgrounds                                | VIC
+       5115 | RGC Cook Recreation Reserve                           | VIC
+       5564 | Roper Reserve 2                                       | VIC
+       5759 | Mactier Gardens                                       | VIC
+       6149 | Cohuna Memorial Hall and Civic Centre                 | VIC
+       6261 | Ballarat Botanical Gardens - North                    | VIC
+       6267 | Little Bridge Street Car Park                         | VIC
+       6292 | CE Brown Reserve 1                                    | VIC
+       6790 | Thompsons Beach                                       | VIC
+       7564 | Teesdale Native Hut Creek Reserve                     | VIC
+       7570 | Dereel Memorial Hall                                  | VIC
+       7755 | Merrimans Creek                                       | VIC
+       8283 | Green Street                                          | VIC
+       8297 | Dixons Creek Recreation Reserve                       | VIC
+       8299 | McKenzie Reserve                                      | VIC
+       8433 | Mornington Pier                                       | VIC
+       8445 | Moondah Beach                                         | VIC
+       8450 | Mount Martha Beach - South                            | VIC
+       8461 | Balnarring                                            | VIC
+       8504 | The Boulevarde Reserve                                | VIC
+       9844 | HE Parker Reserve                                     | VIC
+       9924 | Ringwood Lake Park                                    | VIC
+      10085 | Castlefield Reserve                                   | VIC
+      10419 | Cairns Street                                         | VIC
+      11960 | Elwood Park                                           | VIC
+      11964 | Point Ormond                                          | VIC
+      11969 | O'Donnell Gardens                                     | VIC
+      11973 | Coles Balaclava Car Park                              | VIC
+      11985 | Gasworks Park                                         | VIC
+      12797 | Main Street                                           | VIC
+      12809 | Bromfield Street                                      | VIC
+      12810 | Gellibrand Street                                     | VIC
+      12811 | Fyans Street                                          | VIC
+      12820 | Beech Forest-Mtsabi Road                              | VIC
+      12830 | Birregurra-Forrest Road                               | VIC
+      12834 | Bennettswood Reserve                                  | VIC
+      12862 | Surrey Dive                                           | VIC
+      12863 | Terrara Park                                          | VIC
+      13464 | Beggs St                                              | VIC
+      17001 | Drysdale Main Street                                  | VIC
+      17123 | Phoenix Park                                          | VIC
+      17706 | Victoria Street                                       | VIC
+      18187 | Epping Plaza Regional Shopping Centre                 | VIC
+      18239 | QV                                                    | VIC
+      18592 | Mace Reserve                                          | VIC
+      18608 | Heatherton Park                                       | VIC
+      18960 | Murrumbeena                                           | VIC
+      35051 | BP Little River (Geelong Bound)                       | VIC
+      38857 | Carnegie                                              | VIC
+      38863 | Harleston Park                                        | VIC
+      39715 | Civic Centre                                          | VIC
+      40267 | Bourke Street                                         | VIC
+      40697 | Coles Port Melbourne                                  | VIC
+      40699 | Donovans                                              | VIC
+      40701 | Emerald Hill Library                                  | VIC
+      40715 | Sandridge Beach                                       | VIC
+      40717 | South Melbourne Market                                | VIC
+      40785 | Barry Rd Community Activity Centre                    | VIC
+      40891 | Town Hall                                             | VIC
+      40929 | Mordialloc Shopping Centre                            | VIC
+      43655 | Benalla Library                                       | VIC
+      43813 | Samaria Road                                          | VIC
+      43975 | Police Paddock                                        | VIC
+      44075 | Hazel Glen Community Centre                           | VIC
+      44077 | Whittlesea Community Activity Centre                  | VIC
+      44437 | Campbell Reserve                                      | VIC
+      44443 | CB Smith Reserve                                      | VIC
+      45209 | Murrumbeena Park                                      | VIC
+      46161 | Caltex Mildura                                        | VIC
+      46305 | Merino Recreation Reserve                             | VIC
+      46653 | Sarsfield Recreation Reserve                          | VIC
+      47001 | Cherrypool                                            | VIC
+      47981 | Alfred Deakin Place                                   | VIC
+      47983 | Victoria Park Inclusive Playsplace                    | VIC
+      48481 | Reedy Lake Apex Park                                  | VIC
+      48635 | Duncan McKinnon Pavilion                              | VIC
+      51053 | Ron Barassi Senior Pavilion                           | VIC
+      51295 | Booran Reserve                                        | VIC
+      52229 | King George VI Memorial Reserve - Pavilion            | VIC
+      52757 | Jetty Road                                            | VIC
+      52763 | Hurlingham Park                                       | VIC
+      52909 | Inglewood Town Hall                                   | VIC
+      52925 | Landsborough                                          | VIC
+      52957 | McKinnon Road                                         | VIC
+      52959 | Carnegie Railway Station                              | VIC
+      52963 | Mount Pleasant Reserve                                | VIC
+      53057 | Epping Animal Welfare Precinct                        | VIC
+      53107 | Flinders Parade Playground                            | VIC
+      53119 | Ocean Grove Main Beach                                | VIC
+      53235 | Latrobe City Service Centre Traralgon                 | VIC
+      53517 | Leisurelink Aquatic Centre                            | VIC
+      53587 | McKinnon Train Station                                | VIC
+      53589 | Carnegie Train Station                                | VIC
+      53593 | Glen Eira Sports and Aquatic Centre                   | VIC
+      53597 | Lynbrook Community Centre                             | VIC
+      53605 | Casey ARC                                             | VIC
+      53659 | Oakleigh Shopping Centre                              | VIC
+      53661 | Boxhill Central Shopping Centre                       | VIC
+      53781 | Cockatoo Pocket Park Exeloo Asset ID 143877           | VIC
+      53787 | Point Park Docklands                                  | VIC
+      53789 | Princes Park                                          | VIC
+      53807 | Melton Botanic Garden                                 | VIC
+      53835 | Waubra  Reserve                                       | VIC
+      54041 | McKinnon Reserve Playground                           | VIC
+      54073 | Port of Sale Wellington Centre                        | VIC
+      54089 | 271 Spring Street                                     | VIC
+      54239 | Canterbury Sports Ground Pavilion                     | VIC
+      54245 | Deep Creek Reserve                                    | VIC
+      54273 | Kaniva Wetlands & Fauna Park                          | VIC
+      54287 | Deep Creek Reserve - Pakenham                         | VIC
+      54317 | Heather Street                                        | VIC
+      54319 | Browns Road                                           | VIC
+      54337 | Inglewood Recreation Reserve & Sports Centre          | VIC
+      54563 | Ross Creek Recreation Reserve                         | VIC
+      54565 | Bannockburn Heart                                     | VIC
+      54571 | Taylors Lake Boat Ramp West                           | VIC
+      54575 | Enfield Harrisons Reserve                             | VIC
+      54597 | Sevill Water Play Park                                | VIC
+      54913 | Milloo Street                                         | VIC
+      55151 | Rosewall Community Centre                             | VIC
+      55281 | Edwards Lake Changing Places Facility                 | VIC
+      55352 | Croydon Public Library                                | VIC
+      55353 | Croydon Central                                       | VIC
+      55373 | Everton                                               | VIC
+      55465 | Sandy Creek Recreation Reserve                        | VIC
+      55554 | Mayer Park                                            | VIC
+      55562 | Jubilee Park                                          | VIC
+      55640 | Oxley Recreation Reserve                              | VIC
+      55652 | Warreena Park                                         | VIC
+      55659 | Pipemakers Park                                       | VIC
+      55696 | Goorambat Cafe                                        | VIC
+      55716 | Wilson Botanic Park                                   | VIC
+      55766 | Wahgunyah Rail                                        | VIC
+      55822 | Elaine Cricket Club                                   | VIC
+      55847 | Healesville Sanctuary                                 | VIC
+      55887 | Liberty Colac                                         | VIC
+      56011 | Coles Shopping Centre                                 | VIC
+      56070 | Koroit Railway Station                                | VIC
+      56088 | Bowser Rail Trail                                     | VIC
+      56099 | Caltex Red Cliffs                                     | VIC
+      56120 | Kyneton Library                                       | VIC
+      56144 | Warrnambool Library                                   | VIC
+      56172 | Lions Park Glenrowan                                  | VIC
+      56237 | Port Fairy Visitor Information Centre                 | VIC
+      56279 | Frankston Yacht  Club                                 | VIC
+      56308 | Senior Citizens Building                              | VIC
+      56312 | Armstrong District Park and Playground                | VIC
+      56328 | North Gardens Ballarat Botanic Gardens Lake Wendouree | VIC
+      56394 | Strachan Park                                         | VIC
+      56395 | Eastern Park                                          | VIC
+      56494 | Wilsons Promontory National Park                      | VIC
+      56801 | Kerang Library                                        | VIC
+      56912 | Chelsea                                               | VIC
+      57019 | Carisbrook                                            | VIC
+      57106 | Melbourne Central - Elizabeth Street                  | VIC
+      57180 | Selwyn park                                           | VIC
+      57195 | Pakenham Toomuc Rotary Park Asset ID 173679           | VIC
+      57219 | Coles Mill Park Lakes                                 | VIC
+      57221 | Mernda Train Station                                  | VIC
+      57222 | Mernda Junction Shopping Centre                       | VIC
+      57224 | Ampol Mernda                                          | VIC
+      57225 | Hungry Jack's Mernda                                  | VIC
+      57226 | McDonald's Mernda                                     | VIC
+      57228 | HomeCo South Morang                                   | VIC
+      57232 | Westfield Plenty Valley                               | VIC
+      57247 | Merrifield City Shopping Centre                       | VIC
+      58740 | GJ Hosken Reserve                                     | VIC
+      58741 | Brooklyn Reserve Playground                           | VIC
+      58745 | Pascoe Street Car Park                                | VIC
+      58746 | Apollo Bay Boat Ramp                                  | VIC
+      58760 | Monash Gallery of Art                                 | VIC
+      58763 | Monash Civic Centre                                   | VIC
+      58767 | Wellington Reserve Community Centre                   | VIC
+      58831 | Moorabool Street                                      | VIC
+      58925 | Octavia Street Car Park                               | VIC
+      58926 | Mt Martha Citation Oval                               | VIC
+      59119 | Capel Sound                                           | VIC
+      59161 | Taggerty General Store                                | VIC
+      59187 | The Nook                                              | VIC
+      59220 | Arcadia Recreation Reserve                            | VIC
+      59222 | Manor Lakes Shopping Centre                           | VIC
+      59238 | Newport Hub                                           | VIC
+      59262 | Bayview Central Curlewis                              | VIC
+(210 rows)
+
