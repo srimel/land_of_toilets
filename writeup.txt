@@ -1,10 +1,10 @@
 Australia, Land of Toilets: The Final Write-Up
 By Pete Wells, Stuart Rimel
+6/2/2022, CS-586: Intro to Database Management Systems
 
 
 DESCRIPTION OF ETL
 -------------------------------------------------------------------------------------------------------------------------------------------
-
 
     Our dataset includes over 22k public toilets throughout Australia, with each toilet containing 47 data points regarding all the attributes of the facilities (see TABLE CONTENT section). We have split up this data into 14 relational tables (see below CREATE TABLE STATEMENTS section), wich allows multiple perspectives on toilet data throughout the land down under!
 
