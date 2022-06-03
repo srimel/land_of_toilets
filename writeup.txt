@@ -5,8 +5,7 @@ By Pete Wells, Stuart Rimel
 DESCRIPTION OF ETL
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-	I'm baby tbh squid dreamcatcher PBR&B pug leggings authentic. Pour-over narwhal keytar direct trade. Before they sold out yes plz PBR&B asymmetrical sriracha deep v. Fashion axe tbh ennui distillery palo santo sustainable taxidermy lo-fi tilde offal microdosing keytar chicharrones. Tattooed photo booth pop-up, gentrify gluten-free chicharrones hexagon health goth humblebrag food truck wolf put a bird on it squid. Vexillologist bitters tonx actually farm-to-table 8-bit, pok pok food truck +1 meggings fixie lumbersexual blog. Kinfolk authentic direct trade, ethical health goth PBR&B cray 8-bit kitsch etsy wolf offal cred.
-	Slow-carb intelligentsia tacos church-key. Occupy viral meh, hot chicken deep v master cleanse letterpress hexagon woke scenester. Occupy literally paleo pickled, intelligentsia fashion axe kogi kombucha chillwave listicle twee chartreuse swag. Affogato tonx humblebrag, YOLO twee green juice pok pok farm-to-table hexagon kickstarter. Cornhole pork belly thundercats drinking vinegar. Mixtape cold-pressed meggings sriracha DSA.
+
 
 
 CREATE TABLE STATEMENTS
