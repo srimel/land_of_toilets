@@ -5,7 +5,14 @@ By Pete Wells, Stuart Rimel
 DESCRIPTION OF ETL
 -------------------------------------------------------------------------------------------------------------------------------------------
 
+	
+	Our dataset includes over 22k public toilets throughout Australia, with each toilet containing 47 data points regarding all the attributes of the facilities (see TABLE CONTENT section). We have split up this data into 14 relational tables (see below CREATE TABLE STATEMENTS section), wich allows multiple perspectives on toilet data throught the land down under!
 
+	Our ETL application will load all 22k+ toilets split among 14 relational tables in about 45 minutes on the school's linux servers. The ETL application starts off by prompting for database credentials to login to our DB. Then, the ETL creates a connection by using python's psycopg2 library. This allows the application to create instances of our database such that we can run sql commands via python functions. The ETL then proceeds to create all the relational tables that will be utilized in our database (see SCHEMA DIAGRAM attachment). After each table is created (fully automated) a confirmation message is output. Once all the tables are created then the ETL invokes the data wrangling from our source csv file into dataframes using python's pandas library. This process allows our ETL to automate the organization of the source dataset into 14 dataframes that correspond to our 14 relational tables that were previously created by the application. Once the ETL wrangles the dataset into 14 dataframes, then the ETL will insert each row of each dataframe into it's respective relational table in sql via the to_sql() function from the pandas library. With that, the entirety of the dataset is wrangled and inserted into newly created tables within our database. 
+
+	Overall, the process of creating this database and inserting all data into was successfully automated with this ETL application. If we had more time, we would try to optimize the amount of time it takes to load the data into the database. There is definitely room for efficiency improvements!
+
+Link to our ETL application repo --> https://github.com/srimel/land_of_toilets
 
 
 CREATE TABLE STATEMENTS
@@ -435,18 +442,18 @@ SELECT facilityid, name, state
 FROM toilets natural join location_rel natural join state_rel natural join states natural join handicap
 WHERE ambulant = true AND state = 'VIC';
 
- facilityid |                         name                          | state 
-------------+-------------------------------------------------------+-------
-        253 | Lloyd Street                                          | VIC
-        270 | Great Western                                         | VIC
-        548 | Mortlake Tea Tree Lake                                | VIC
-        557 | Woorndoo                                              | VIC
-        562 | Dudley W Cornell Park                                 | VIC
-        563 | May Park                                              | VIC
-        572 | Horsham Town Hall                                     | VIC
-       1087 | Central Park                                          | VIC
-       1239 | Centenary Park                                        | VIC
-       1338 | Princes Park 1                                        | VIC
+ facilityid |   name                  | state 
+------------+----------------------------------
+        253 | Lloyd Street            | VIC
+        270 | Great Western           | VIC
+        548 | Mortlake Tea Tree Lake  | VIC
+        557 | Woorndoo                | VIC
+        562 | Dudley W Cornell Park   | VIC
+        563 | May Park                | VIC
+        572 | Horsham Town Hall       | VIC
+       1087 | Central Park            | VIC
+       1239 | Centenary Park          | VIC
+       1338 | Princes Park 1          | VIC
        ...
 (210 rows)
 
