@@ -249,16 +249,16 @@ GROUP BY town ORDER BY town;
 
                town                | Toilet Count 
 -----------------------------------+--------------
- Abbey                             |            1
- Abbeyard                          |            5
- Abbotsbury                        |            8
- Abbotsford                        |            6
- Abercrombie River                 |            1
- Aberdare                          |            2
- Aberdeen                          |            4
- Aberfeldie                        |            3
- Aberfoyle Park                    |            5
- Abermain                          |            2
+ Melbourne                         |           50
+ Sydney                            |           49
+ Adelaide                          |           45
+ Dubbo                             |           45
+ Coffs Harbour                     |           40
+ Hamilton                          |           36
+ Manly                             |           35
+ Muswellbrook                      |           34
+ Orange                            |           32
+ Mildura                           |           31
  ...
 (6326 rows)
 
