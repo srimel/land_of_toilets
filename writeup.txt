@@ -5,12 +5,12 @@ By Pete Wells, Stuart Rimel
 DESCRIPTION OF ETL
 -------------------------------------------------------------------------------------------------------------------------------------------
 
-	
-	Our dataset includes over 22k public toilets throughout Australia, with each toilet containing 47 data points regarding all the attributes of the facilities (see TABLE CONTENT section). We have split up this data into 14 relational tables (see below CREATE TABLE STATEMENTS section), wich allows multiple perspectives on toilet data throught the land down under!
 
-	Our ETL application will load all 22k+ toilets split among 14 relational tables in about 45 minutes on the school's linux servers. The ETL application starts off by prompting for database credentials to login to our DB. Then, the ETL creates a connection by using python's psycopg2 library. This allows the application to create instances of our database such that we can run sql commands via python functions. The ETL then proceeds to create all the relational tables that will be utilized in our database (see SCHEMA DIAGRAM attachment). After each table is created (fully automated) a confirmation message is output. Once all the tables are created then the ETL invokes the data wrangling from our source csv file into dataframes using python's pandas library. This process allows our ETL to automate the organization of the source dataset into 14 dataframes that correspond to our 14 relational tables that were previously created by the application. Once the ETL wrangles the dataset into 14 dataframes, then the ETL will insert each row of each dataframe into it's respective relational table in sql via the to_sql() function from the pandas library. With that, the entirety of the dataset is wrangled and inserted into newly created tables within our database. 
+    Our dataset includes over 22k public toilets throughout Australia, with each toilet containing 47 data points regarding all the attributes of the facilities (see TABLE CONTENT section). We have split up this data into 14 relational tables (see below CREATE TABLE STATEMENTS section), wich allows multiple perspectives on toilet data throughout the land down under!
 
-	Overall, the process of creating this database and inserting all data into was successfully automated with this ETL application. If we had more time, we would try to optimize the amount of time it takes to load the data into the database. There is definitely room for efficiency improvements!
+	Our ETL application will load all 22k+ toilets split among 14 relational tables in about 45 minutes on the school's linux servers. The ETL application starts off by prompting for database credentials to login to our DB. Then, the it creates a connection by using python's psycopg2 library. This allows the application to create instances of our database such that we can run sql commands via python functions. The ETL then proceeds to create all the relational tables that will be utilized in our database (see SCHEMA DIAGRAM attachment). After each table is created (fully automated) a confirmation message is output. Once all the tables are created then the ETL invokes the data wrangling from our source csv file into dataframes using python's pandas library. This process allows our ETL to automate the organization of the source dataset into 14 dataframes that correspond to our 14 relational tables that were previously created by the application. Once the ETL wrangles the dataset into 14 dataframes, then it will insert each row of each dataframe into it's respective relational table in sql via the to_sql() function from the pandas library. With that, the entirety of the dataset is wrangled and inserted into newly created tables within our database. 
+
+	Overall, the entire process of creating this database and inserting all data into was successfully automated with this ETL application. If we had more time, we would potentially re-organize how some of our data is normalized to prevent excessive joins and try to optimize the amount of time it takes to load the data into the database. There is definitely room for efficiency improvements!
 
 Link to our ETL application repo --> https://github.com/srimel/land_of_toilets
 
@@ -267,6 +267,7 @@ GROUP BY town ORDER BY town;
  Mildura                           |           31
  ...
 (6326 rows)
+For whole list see q4.txt
 
 --5. What percentage of toilets are open 24 hours a day?
 SELECT 100*(SELECT COUNT(*) FROM toilets JOIN access USING(facilityID) WHERE openinghours='OPEN: 24 hours')/COUNT(*) 
